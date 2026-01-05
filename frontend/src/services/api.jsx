@@ -21,7 +21,13 @@ api.interceptors.request.use((config) => {
 // Auth endpoints
 export const authAPI = {
   register: (data) => api.post('/auth/register/', data),
-  login: (data) => api.post('/auth/login/', data),
+  login: (data, expectedRole = null) => {
+    const loginData = { ...data };
+    if (expectedRole) {
+      loginData.expected_role = expectedRole;
+    }
+    return api.post('/auth/login/', loginData);
+  },
 };
 
 // Job endpoints

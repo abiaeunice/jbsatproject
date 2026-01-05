@@ -22,7 +22,7 @@ export default function EmployerAuth() {
 
     try {
       if (isLogin) {
-        await login(formData.email, formData.password);
+        await login(formData.email, formData.password, 'EMPLOYER');
       } else {
         await register({ ...formData, role: 'EMPLOYER' });
       }

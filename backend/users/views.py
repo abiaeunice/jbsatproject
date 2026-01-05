@@ -33,6 +33,7 @@ def register(request):
 def login(request):
     email = request.data.get('email')
     password = request.data.get('password')
+    expected_role = request.data.get('expected_role')
     
     if not email or not password:
         return Response(
@@ -46,6 +47,13 @@ def login(request):
         return Response(
             {'error': 'Invalid credentials'},
             status=status.HTTP_401_UNAUTHORIZED
+        )
+    
+    # Check if user's role matches the expected role
+    if expected_role and user.role != expected_role:
+        return Response(
+            {'error': f'This login page is for {expected_role.lower()}s only. Please use the correct login page.'},
+            status=status.HTTP_403_FORBIDDEN
         )
     
     refresh = RefreshToken.for_user(user)

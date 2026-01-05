@@ -22,7 +22,7 @@ export default function SeekerAuth() {
 
     try {
       if (isLogin) {
-        await login(formData.email, formData.password);
+        await login(formData.email, formData.password, 'SEEKER');
       } else {
         await register({ ...formData, role: 'SEEKER' });
       }

@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import GuideModal from '../components/UserGuide/GuideModal';  // ← NEW IMPORT
+
 
 export default function LandingPage() {
   const navigate = useNavigate();
   const [hoveredCard, setHoveredCard] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);  // ← NEW STATE
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
@@ -37,6 +41,24 @@ export default function LandingPage() {
                 className="text-sm text-gray-600 hover:text-purple-600 font-medium transition-colors"
               >
                 For Employers
+              </button>
+              {/* User Guide Button */}
+              <button 
+                className="btn btn-guide btn-lg" 
+                onClick={() => setIsModalOpen(true)}
+                style={{ 
+                  marginLeft: '10px', 
+                  backgroundColor: '#3498db', 
+                  color: 'white', 
+                  padding: '8px 16px', 
+                  borderRadius: '6px', 
+                  border: 'none', 
+                  cursor: 'pointer', 
+                  fontSize: '14px', 
+                  fontWeight: '500' 
+                }}
+              >
+                📖 User Guide
               </button>
             </div>
           </div>
@@ -218,6 +240,9 @@ export default function LandingPage() {
           <p className="text-xs">© 2025 JOB SUMA - COOP Group Project AUMS. All rights reserved.</p>
         </div>
       </div>
+
+      {/* User Guide Modal */}
+      <GuideModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
       <style>{`
         .scale-102 {
