@@ -174,7 +174,9 @@ The frontend will be available at: `http://localhost:5173`
 | GET | `/api/applications/` | List applications |
 | POST | `/api/applications/` | Submit application (Seeker only) |
 | GET | `/api/applications/{id}/` | Get application details |
-| PUT | `/api/applications/{id}/` | Update status (Employer only) |
+| PUT | `/api/applications/{id}/` | Update status 
+| DELETE | `/applications/${id}/withdraw/`| Delete application (Owner only) |
+(Employer only) |
 
 ## Test Accounts
 
